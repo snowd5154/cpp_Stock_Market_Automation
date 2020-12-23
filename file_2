@@ -1,0 +1,173 @@
+//The following stock automation is with input file option
+#ifndef H_listType
+#define H_listType
+
+#include <cstdlib>
+#include <iostream>
+#include <cassert>
+
+using namespace std;
+
+template <class elemType>
+class listType
+{ //class template to create an array and perform various functions
+public:
+bool isEmpty() const;
+bool isFull() const;
+int getLength() const;
+int getMaxSize() const;
+void sort();
+void print() const;
+void insertAt(const elemType& item, int position);
+listType(int listSize = 50);
+~listType();
+
+protected:
+int maxSize;
+int length;
+elemType *list;
+};
+
+template <class elemType>
+bool listType<elemType>::isEmpty() const
+{ //function to check if array is empty
+return (length == 0);
+}
+
+template <class elemType>
+bool listType<elemType>::isFull() const
+{ //function to check if array is full
+return (length == maxSize);
+}
+
+template <class elemType>
+int listType<elemType>::getLength() const
+{ //function to get length
+return length;
+}
+
+template <class elemType>
+int listType<elemType>::getMaxSize() const
+{ //function to get maxSize
+return maxSize;
+}
+
+template <class elemType>
+listType<elemType>::listType(int listSize)
+{ //default constructor
+maxSize = listSize;
+length = 0;
+list = new elemType[maxSize];
+}
+
+template <class elemType>
+listType<elemType>::~listType()
+{ //destructor
+delete [] list;
+}
+
+template <class elemType>
+void listType<elemType>::sort()
+{ //sort function
+int i, j;
+int min;
+elemType temp;
+
+for(i = 0; i < length; i++)
+{
+min = i;
+for(j = i; j < length; ++j)
+if (list[j] < list[min])
+min = j;
+temp = list[i];
+list[i] = list[min];
+list[min] = temp;
+}
+}
+
+template <class elemType>
+void listType<elemType>::print() const
+{ //print function
+int i;
+for(i = 0; i < length; ++i)
+cout << list[i] << " ";
+cout << endl;
+}
+
+template <class elemType>
+void listType<elemType>::insertAt(const elemType& item, int position)
+{ //insert function
+assert(position >= 0 && position < maxSize);
+list[position] = item;
+length++;
+}
+
+#endif
+
+//Some problems from here on
+
+#include <ostream>
+#include <string>
+
+using namespace std;
+
+int main ()
+
+{
+
+class stockListType: public listType<stockType>
+{
+public:
+struct stockType
+{
+string stockSymbol;
+double open;
+double close;
+double high;
+double low;
+double previousClose;
+double percentGain;
+double volume;
+};
+
+
+
+void arrayInput (int myArray)
+{
+int counter = 0;
+int arrayOfStruct = myArray;
+
+for(counter = 0; counter < 50; counter++)
+infile >> arrayOfStruct[counter].stockSymbol
+infile >> arrayOfStruct[counter].open
+infile >> arrayOfStruct[counter].close
+infile >> arrayOfStruct[counter].high
+infile >> arrayOfStruct[counter].low
+infile >> arrayOfStruct[counter].previousClose
+infile >> arrayOfStruct[counter].percentGain
+infile >> arrayOfStruct[counter].volume;
+}
+
+void sortTndices ()
+{
+int i = 0;
+
+for (i = 0; i < 50; i++)
+if (myArray[i] < myArray[i++])
+
+}
+
+void printIndices (mystruct)
+{
+int i = 0;
+for(i = 0; i < 50; i++)
+cout << mystruct.stocksymbol << mystruct.open;
+cout << mystruct.close << mystruct.high;
+cout << mystruct.low << mystruct.previousClose;
+cout << mystruct.percentGain << mystruct.volume << endl;
+}
+
+}
+system ("pause");
+return 0;
+}
